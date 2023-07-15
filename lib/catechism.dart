@@ -5,12 +5,17 @@ import 'package:catechism/models/catechism.dart';
 import 'package:dotenv/dotenv.dart';
 
 Map<String, BollsMeta>? translationMeta;
+String? translation;
+DotEnv? env;
+
+Future loadEnv() async {
+  env = DotEnv(includePlatformEnvironment: true)..load();
+  return env;
+}
 
 Future<Catechism> loadCatechismData() async {
-  var env = DotEnv(includePlatformEnvironment: true)..load();
-
   // Access a specific environment variable
-  var source = env['SOURCE']!;
+  var source = env!['SOURCE']!;
 
   File jsonFile = File(source);
   String jsonString = await jsonFile.readAsString();
@@ -20,11 +25,9 @@ Future<Catechism> loadCatechismData() async {
 }
 
 Future loadTranslationData() async {
-  var env = DotEnv(includePlatformEnvironment: true)..load();
-
   // Access a specific environment variable
-  var translation = env['TRANSLATION'];
-  var referenceMetadata = env['REFERENCE_META']!;
+  translation = env!['TRANSLATION'];
+  var referenceMetadata = env!['REFERENCE_META']!;
 
   if (["ESV", "NIV"].contains(translation)) {
     File jsonFile = File(referenceMetadata);
@@ -122,7 +125,7 @@ List<Map<String, dynamic>> parseAndFormatReference(
       }
 
       Map<String, dynamic> formattedReference = {
-        "translation": 'ESV', //should be translation name
+        "translation": translation,
         "book": bookId,
         "book_name": bookName,
         "reference": reference,
@@ -151,7 +154,7 @@ List<Map<String, dynamic>> parseAndFormatReference(
     }
 
     Map<String, dynamic> formattedReference = {
-      "translation": 'ESV', //should be translation name
+      "translation": translation,
       "book": bookId,
       "book_name": bookName,
       "reference": reference,
@@ -170,7 +173,7 @@ List<Map<String, dynamic>> parseAndFormatReference(
     int chapter = int.parse(components[0]);
 
     Map<String, dynamic> formattedReference = {
-      "translation": 'ESV', //should be translation name
+      "translation": translation,
       "book": bookId,
       "book_name": bookName,
       "reference": reference,

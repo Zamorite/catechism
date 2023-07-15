@@ -9,7 +9,8 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 Future<void> main() async {
-  var env = DotEnv(includePlatformEnvironment: true)..load();
+  // has to be called first
+  var env = await catechism.loadEnv();
 
   // Access a specific environment variable
   var translation = env['TRANSLATION'];
