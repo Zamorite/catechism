@@ -6,7 +6,7 @@ import 'package:catechism/models/verseResponse.dart';
 import 'package:dio/dio.dart';
 import 'package:dotenv/dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+// import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 Future<List<ReferencedVerses>> getVerses(
 // Future<List<ReferencedVerses>> getVersesWithDio(
