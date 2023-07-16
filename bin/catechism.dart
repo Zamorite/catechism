@@ -390,7 +390,8 @@ Future<void> main() async {
                       width: 338,
                       child: pw.Wrap(
                         children: [
-                          pw.Padding(
+                          pw.Container(
+                            width: 338,
                             padding: pw.EdgeInsets.only(
                               bottom: 1,
                             ),
