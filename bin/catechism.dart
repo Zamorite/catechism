@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:catechism/catechism.dart' as catechism;
 import 'package:catechism/models/catechism.dart';
 import 'package:collection/collection.dart';
-import 'package:dotenv/dotenv.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
@@ -424,7 +423,8 @@ Future<void> main() async {
                                       style: tsPageNo,
                                       children: [
                                         pw.TextSpan(
-                                          text: "${verse.text} ",
+                                          text:
+                                              "${verse.text.replaceAll("<br/>", "\n")} ",
                                           style: tsRefText,
                                         ),
                                       ],
